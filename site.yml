@@ -1,11 +1,11 @@
-title : Blog Title
-tagline: Blog Tagline
+title : Tenly 互联网哲学
+tagline: 记录我的千丝智慧
 author :
-  name : Firstname Lastname
-  email : blah@email.test
-  github : username
-  twitter : username
-  feedburner : feedname
+  name : Tenly Wu
+  email : tenlywu@gmail.com
+  github : tenlywu
+  twitter : tenlywu
+  feedburner : tenlywu
 
 navigation :
   - archive.html
