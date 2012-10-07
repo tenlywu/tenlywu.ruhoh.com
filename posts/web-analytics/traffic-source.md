@@ -56,7 +56,9 @@ SMT(SiteMaster Tracker) 来源参数，是用来标注 `访问` 为特定推广�
 #### 举例：
 
 http://abc.cn/?smt_cp=Q2launch&smt_pl=newone&smt_md=sina
+
 http://abc.cn/?smt_cp=bigband&smt_pl=cpc&smt_md=google&smt_ct=fashion&smt_kw=guitar
+
 http://abc.cn/?smt_b=C0B0A090807060587EBEE0C
 
 
