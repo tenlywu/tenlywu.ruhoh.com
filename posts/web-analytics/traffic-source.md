@@ -1,7 +1,7 @@
 ---
-title: 网站来源的区分方式
+title: 网站来源的两种切分方式 [终稿]
 date: '2012-08-17'
-description: SiteMaster 有两种切分方式将这个集合像蛋糕一样进行完整切分。
+description: SiteMaster 有两种切分方式将网站流量集合像蛋糕一样进行完整切分。
 categories: 网站分析
 tags: [来源]
 ---
@@ -35,7 +35,7 @@ SiteMaster 有两种切分方式将这个集合像蛋糕一样进行完整切分
 
 ### smt 参数定义
 
-SMT(SiteMaster Tracker) 来源参数，是用来标注 `访问` 为特定推广渠道的URL变量，分为五个：
+SMT(SiteMaster Tracker) 来源参数，是用来标注 `访问` 为特定推广渠道的 URL 变量，分为五个：
 
 * 简称 `smt_cp`：Campaign 项目
 * 简称 `smt_md`：Medium 媒体
@@ -43,19 +43,21 @@ SMT(SiteMaster Tracker) 来源参数，是用来标注 `访问` 为特定推广�
 * 简称 `smt_ct`：Creative 创意
 * 简称 `smt_kw`：Keywords 关键字
 
-合法的 SMT 参数定义：`smt_cp`，`smt_md`，`smt_pl`是必选参数，其它两个为可选参数，必选参数缺失则不合法。
+合法的 SMT 参数定义：`smt_cp`，`smt_md`，`smt_pl`是必选参数，其它两个为可选参数，必选参数缺失则不合法。注意这些参数在 URL 中使用，所以需要保证字符的合法性。
 
 #### 奇妙的 smt_b 参数
 
-为了实现与广告端的整合，`smt_b` 参数是一个将项目、媒体、广告位、创意、关键字打包在一起的参数，系统会自动解析 `smt_b` 参数，扩充成五个开放参数的值。
+为了实现与广告端的整合，`smt_b` 参数是一个将项目、媒体、广告位、创意、关键字打包在一起的参数，SiteMaster 系统会自动解析 `smt_b` 参数，扩充成五个开放参数的值。
 
-如果 `smt_b` 与 smt_**(五个开放参数) 共存，它的优先级更高，会覆盖开放参数的值。
+如果 `smt_b` 与 `smt_**`(五个开放参数) 共存，它的优先级更高，会覆盖开放参数的值。
+
+> 在 TrackMaster 产品中，勾选在项目属性中 `启用 smt_b 参数跟踪` 功能后，所有的跳转链接将自动带上 `smt_b` 参数。
 
 #### 举例：
 
-http://abc.cn/? `smt_cp=Q2launch`&`smt_pl=newone`&`smt_md=sina`  
-http://abc.cn/? `smt_cp=bigband`&`smt_pl=cpc`&`smt_md=google`&`smt_ct=fashion`&`smt_kw=guitar`  
-http://abc.cn/? `smt_b=C0B0A090807060587EBEE0C`
+http://abc.cn/?smt_cp=Q2launch&smt_pl=newone&smt_md=sina
+http://abc.cn/?smt_cp=bigband&smt_pl=cpc&smt_md=google&smt_ct=fashion&smt_kw=guitar
+http://abc.cn/?smt_b=C0B0A090807060587EBEE0C
 
 
 ## 二、根据 `访问` 的 Cookie 历史
@@ -92,14 +94,15 @@ Cookie 是记录用户互联网匿名行为信息的小文件。AdMaster Cookie 
 
 如果分析符合条件的 AdMaster Cookie 历史后，如果存在至少一条 AdMaster 广告历史，则这次访问称之是 `整合引导`。而最近的一次历史为：
 
-* 点击，则该访问是由`点击引导`的。归入该历史的特定项目、媒体、广告位、创意点击引导，关键字维度(研发中)。
-* 曝光，则该访问是由`曝光引导`的。归入该历史的特定项目、媒体、广告位、创意曝光引导，关键字维度(研发中)。
+* 点击，则该访问是由 `点击引导` 的。归入该历史的特定项目、媒体、广告位、创意点击引导，关键字维度(研发中)。
+* 曝光，则该访问是由 `曝光引导` 的。归入该历史的特定项目、媒体、广告位、创意曝光引导，关键字维度(研发中)。
 
 通过整合引导、曝光引导、点击引导，可以分析广告（细分到项目、媒体、广告位、创意、关键字）五个维度下的曝光、点击、访问（曝光引导的、点击引导的）的数据，此及之间的转化与这些访问的相关指标（访问平均持续时间、跳出率等等）
 
+> 通过 Cookie 历史进行访问的切分，需要在 TrackMaster 的项目属性中勾选 `启用 SiteMaster Cookie 打通`。
 
 ## 三、两种切分方式的关系
 
-通过两种切分 访问 的方式，可以得到一种二维关系表。
+如果两种切分方式都被勾选了，通过这两种切分 `访问` 的方式，可以得到一种二维关系表。
 
 ![image]({{urls.media}}/img/2012/traffic-source.png)
